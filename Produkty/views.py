@@ -13,17 +13,19 @@ def index(request):
     dane = {'kategorie': kategorie}
     return render(request, 'szablon.html', dane)
 
-    #context = { 'wszystkie' : wszystkie,
-    #           'kategorie' : kategorie}
-    #return render(request, 'szablon.html', context)
 
 def kategoria (request, id):        # /kategoria/1 to wyswietla o id=1
     kategoria_user = Kategoria.objects.get(pk=id)
-    return HttpResponse(kategoria_user.nazwa)
+    kategoria_produkt = Produkty.objects.filter(kategoria = kategoria_user)   #wszystkie produkty z wybranej kategorii
+    # aktualna lista kategorii aby menu caly czas dzialalo
+    kategorie = Kategoria.objects.all()
+    dane = {'kategoria_user' : kategoria_user,
+            'kategoria_produkt' : kategoria_produkt,
+            'kategorie' : kategorie }
+    return render(request, 'kategoria_produkt.html', dane)
 
 def produkt (request, id):        # /produkt/1 to wyswietla o id=1
     produkt_user = Produkty.objects.get(pk=id)
-    napis = "<h1>" + str(produkt_user) + "</h1>" + \
-            "<p>" + str(produkt_user.opis) + "</p>" + \
-            "<p>" + str(produkt_user.cena) + "</p."
-    return HttpResponse(napis)
+    kategorie = Kategoria.objects.all()
+    dane = {'produkt_user' : produkt_user, 'kategorie' : kategorie}
+    return render(request, 'produkt.html', dane)

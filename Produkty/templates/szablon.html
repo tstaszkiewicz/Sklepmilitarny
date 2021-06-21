@@ -2,17 +2,36 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
-<title>Sklep militarny</title>
+    <!--sposob wyswietlania na urzadzeniach mobilnych-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Styl.css">
+    <title>Sklep militarny</title>
 </head>
 <body>
-
-    <h1>Witam w sklepie</h1>
-    <h3>Wybor opcji</h3>
-    {% for kat in kategorie %}
-
-    <p><a href="kategoria/{{kat.id}}">{{ kat.nazwa }}</a> </p>
+        <header>
 
 
-    {% endfor %}
+        </header>
+
+        <nav>
+            <a class="menu active" href="index.html">O mnie</a>
+            <a class="menu" href="portfolio.html">Portfolio</a>
+            <a class="menu" href="hobby.html">Hobby</a>
+            <a class="menu" href="kontakt.html">Kontakt</a>
+        </nav>
+
+        <div style="width: 200px; float: left">
+
+            <h1>Witam</h1>
+            <h3>Kategorie</h3>
+            {% for kat in kategorie %}
+                <p><a href="/kategoria/{{kat.id}}">{{ kat.nazwa }}</a> </p>
+            {% endfor %}
+        </div>
+
+        <div style="width: 700px; float: left">
+            {% block produkt %} {% endblock produkt %}
+        </div>
+
 </body>
 </html>
