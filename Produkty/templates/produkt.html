@@ -2,12 +2,12 @@
 
     {% block produkt %}
     {% if produkt_user %}
-        <h1> {{produkt_user.nazwa}} </h1>
+        <h3> {{produkt_user.nazwa}} </h3>
         <p> Producent: {{produkt_user.producent}} </p>
         <p> {{produkt_user.opis}} </p>
         <p> {{produkt_user.cena}} </p>
 
     {% else %}
-        <p>Nie ma produktu o takim id.</p>
+        <p>Nie ma produktu o takiej nazwie.</p>
     {% endif %}
     {% endblock produkt %}

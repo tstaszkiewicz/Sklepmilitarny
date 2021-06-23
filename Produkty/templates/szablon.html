@@ -1,24 +1,25 @@
-<!DOCTYPE html>
+{% load static %}
 <html lang="pl">
-<head>
-<meta charset="UTF-8">
-    <!--sposob wyswietlania na urzadzeniach mobilnych-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Styl.css">
-    <title>Sklep militarny</title>
-</head>
-<body>
-        <header>
-
-
-        </header>
-
+    <head>
+        <meta charset="UTF-8">
+        <!--sposob wyswietlania na urzadzeniach mobilnych-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--        <link rel="stylesheet" href="//style.css"/>-->
+        <title>Sklep militarny</title>
+    </head>
+    <body>
+    <header>
+        <div style="width: 200px; float: left">
+            <img src="/Produkty/templates/logo.png" alt="My image">
+        </div>
+    </header>
         <nav>
             <a class="menu active" href="index.html">O mnie</a>
-            <a class="menu" href="portfolio.html">Portfolio</a>
+            <a class="menu" href="/portfolio.html">Portfolio</a>
             <a class="menu" href="hobby.html">Hobby</a>
             <a class="menu" href="kontakt.html">Kontakt</a>
         </nav>
+
 
         <div style="width: 200px; float: left">
 
@@ -27,11 +28,26 @@
             {% for kat in kategorie %}
                 <p><a href="/kategoria/{{kat.id}}">{{ kat.nazwa }}</a> </p>
             {% endfor %}
+
+            <div>
+            <form class="form-inline my-2 my-lg-0" action="/search">
+                  <div class="input-group mb-3">
+                      <input name="q" type="text" class="form-control" placeholder="Wyszukaj produkt" />
+                      <div class="input-group-append">
+                        <button class="btn btn-dark" type="submit" id="button-addon2">Zatwierdź</button>
+                      </div>
+                    </div>
+             </form>
         </div>
+
+        </div>
+
 
         <div style="width: 700px; float: left">
             {% block produkt %} {% endblock produkt %}
         </div>
 
+
 </body>
+
 </html>

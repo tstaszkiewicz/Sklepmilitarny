@@ -1,3 +1,4 @@
+import datetime
 from django.shortcuts import render     #odpowiada za wyswietlanie html
 from django.http import HttpResponse
 from .models import Produkty, Kategoria
@@ -29,3 +30,21 @@ def produkt (request, id):        # /produkt/1 to wyswietla o id=1
     kategorie = Kategoria.objects.all()
     dane = {'produkt_user' : produkt_user, 'kategorie' : kategorie}
     return render(request, 'produkt.html', dane)
+
+def current_datetime(request):
+    now = datetime.datetime.now()
+    html = "<html><body>It is now %s.</body></html>" % now
+    return HttpResponse(html)
+
+    #search
+def search(request):
+    q=request.GET['q']
+    kategorie = Kategoria.objects.all()
+    dane = Produkty.objects.filter(nazwa__icontains=q).order_by('-id')
+    print(dane)
+    context = {
+        'dane': dane,
+        'kategorie':kategorie,
+        'dane':dane
+    }
+    return render(request, 'search.html', context)
