@@ -25,6 +25,7 @@ SECRET_KEY = 'django-insecure-3#eq$9bz&b8i9so+jvc1doe=a-q=l^3zh7yw6(wmnv5qrehq)@
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    '127.0.0.1',
     'sklepmilitarnytomsta.pythonanywhere.com'
 ]
 
