@@ -1,53 +1,55 @@
 {% load static %}
+<!DOCTYPE html>
 <html lang="pl">
     <head>
         <meta charset="UTF-8">
         <!--sposob wyswietlania na urzadzeniach mobilnych-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--        <link rel="stylesheet" href="//style.css"/>-->
+       <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
         <title>Sklep militarny</title>
+        <link rel="icon" type="image/png" sizes="16x16"  href="{% static 'images/favicon.ico' %}">
     </head>
+
     <body>
-    <header>
-        <div style="width: 200px; float: left">
-            <img src="/Produkty/templates/logo.png" alt="My image">
-        </div>
-    </header>
-        <nav>
-            <a class="menu active" href="index.html">O mnie</a>
-            <a class="menu" href="/portfolio.html">Portfolio</a>
-            <a class="menu" href="hobby.html">Hobby</a>
-            <a class="menu" href="kontakt.html">Kontakt</a>
-        </nav>
+    <div id="wrapper">
+        <header>
+                <img class="temp" src="{% static 'images/logosklepu.png' %}" height="200px;" alt="My image">
+        </header>
+            <nav>
+                <a class="menu active" href="/">Sklep militarny TOM-STA</a>
+                <a class="menu" href="/galeria.html">Best Sellery</a>
+                <a class="menu" href="/kontakt.html">Kontakt</a>
 
+                <a class="menu">
+                    <form action="/search">
 
-        <div style="width: 200px; float: left">
+                              <input name="q" type="text" autocomplete="off"  size="11" placeholder="Wyszukaj produkt" />
+                                    <button type="submit" >Zatwierdź</button>
+                     </form>
+                </a>
 
-            <h1>Witam</h1>
-            <h3>Kategorie</h3>
-            {% for kat in kategorie %}
-                <p><a href="/kategoria/{{kat.id}}">{{ kat.nazwa }}</a> </p>
-            {% endfor %}
+            </nav>
 
-            <div>
-            <form class="form-inline my-2 my-lg-0" action="/search">
-                  <div class="input-group mb-3">
-                      <input name="q" type="text" class="form-control" placeholder="Wyszukaj produkt" />
-                      <div class="input-group-append">
-                        <button class="btn btn-dark" type="submit" id="button-addon2">Zatwierdź</button>
-                      </div>
-                    </div>
-             </form>
-        </div>
+            <section>
+                <div id ="navig" >
+                    <h1>Kategorie</h1><br>
+                    {% for kat in kategorie %}
+                        {% if kat.zdjecie %}
+                             <a class="mainphoto" href="/kategoria/{{kat.id}}"><img src="{{ MEDIA_URL }}{{ kat.zdjecie.url }}" alt="img"></a>
+                        {% endif %}
+                        <p><a class="kat" href="/kategoria/{{kat.id}}">{{ kat.nazwa }} </a> </p><br>
+                    {% endfor %}
 
-        </div>
+                </div>
 
+                <div id ="searchwindow">
+                    {% block produkt %} {% endblock produkt %}
+                </div>
+            </section>
 
-        <div style="width: 700px; float: left">
-            {% block produkt %} {% endblock produkt %}
-        </div>
+        <footer>Copyright © Wszystkie prawa zastrzeżone</footer>
 
+    </div>
 
-</body>
-
+    </body>
 </html>

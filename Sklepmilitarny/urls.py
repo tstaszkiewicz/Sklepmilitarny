@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Produkty.views import *
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -24,4 +26,6 @@ urlpatterns = [
     path('kategoria/<id>/', kategoria, name='kategoria'),
     path('produkt/<id>/', produkt, name='produkt'),
     path('search', search, name='search'),
-]
+    path('galeria.html', galeria, name='galeria'),
+    path('kontakt.html', kontakt, name='kontakt'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

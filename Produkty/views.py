@@ -1,15 +1,11 @@
-import datetime
 from django.shortcuts import render     #odpowiada za wyswietlanie html
 from django.http import HttpResponse
 from .models import Produkty, Kategoria
 
+
 # Create your views here.
 
 def index(request):
-    wszystkie = Produkty.objects.all()      #wybranie wszystkiego czyli jak select *
-    jeden = Produkty.objects.get(pk=2)     #wybieranie jednego produktu przez get
-    kateg = Produkty.objects.filter(kategoria=1)    #filtrowanie po kategorii o id 4
-    kat_name = Kategoria.objects.get(id=2)
     kategorie = Kategoria.objects.all()
     dane = {'kategorie': kategorie}
     return render(request, 'szablon.html', dane)
@@ -28,13 +24,9 @@ def kategoria (request, id):        # /kategoria/1 to wyswietla o id=1
 def produkt (request, id):        # /produkt/1 to wyswietla o id=1
     produkt_user = Produkty.objects.get(pk=id)
     kategorie = Kategoria.objects.all()
-    dane = {'produkt_user' : produkt_user, 'kategorie' : kategorie}
+    dane = {'produkt_user' : produkt_user,
+            'kategorie' : kategorie}
     return render(request, 'produkt.html', dane)
-
-def current_datetime(request):
-    now = datetime.datetime.now()
-    html = "<html><body>It is now %s.</body></html>" % now
-    return HttpResponse(html)
 
     #search
 def search(request):
@@ -48,3 +40,12 @@ def search(request):
         'dane':dane
     }
     return render(request, 'search.html', context)
+
+def galeria (request):
+    return render(request, 'galeria.html')
+
+def szablon (request):
+    return render(request, 'szablon.html')
+
+def kontakt (request):
+    return render(request, 'kontakt.html')

@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="UTF-8">
+        <!--sposob wyswietlania na urzadzeniach mobilnych-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
+        <title>Sklep militarny</title>
+        <link rel="icon" type="image/png" sizes="16x16"  href="{% static 'images/favicon.ico' %}">
+    </head>
+
+    <body>
+    <div id="wrapper">
+        <header>
+                <img class="temp" src="{% static 'images/logosklepu.png' %}" height="200px;" alt="My image">
+        </header>
+            <nav>
+                <a class="menu" href="/">Sklep militarny TOM-STA</a>
+                <a class="menu active" href="/galeria.html">Best Sellery</a>
+                <a class="menu" href="/kontakt.html">Kontakt</a>
+
+                <a class="menu">
+                    <form action="/search">
+
+                              <input name="q" type="text" autocomplete="off"  size="11" placeholder="Wyszukaj produkt" />
+                                    <button type="submit" >Zatwierdź</button>
+                     </form>
+                </a>
+
+            </nav>
+
+            <section>
+            <article id="ar01">
+                <h1>BestSellery</h1>
+
+                <figure class="photo">
+                    <img src="{% static 'images/1.png' %}" alt="Wiatrowka1">
+                </figure>
+
+                <figure class="photo">
+                    <img src="{% static 'images/2.png' %}" alt="Wiatrowka2">
+                </figure>
+
+                <figure class="photo">
+                    <img src="{% static 'images/3.png' %}" alt="Wiatrowka3">
+                </figure>
+
+                <figure class="photo">
+                    <img src="{% static 'images/4.png' %}" alt="Latarka">
+                </figure>
+
+                <figure class="photo">
+                    <img src="{% static 'images/5.png' %}" alt="GazPieprzowy">
+                </figure>
+
+                <figure class="photo">
+                    <img src="{% static 'images/6.png' %}" alt="Palkateleskowa">
+                </figure>
+
+                <figure class="photo">
+                    <img src="{% static 'images/7.png' %}" alt="Fotopulapka">
+                </figure>
+
+                <figure class="photo">
+                    <img src="{% static 'images/8.png' %}" alt="LukBloczkowy">
+                </figure>
+
+                <figure class="photo">
+                    <img src="{% static 'images/9.png' %}" alt="Kompas">
+                </figure>
+
+            </article>
+                </section>
+
+
+        <footer>Copyright © Wszystkie prawa zastrzeżone</footer>
+
+    </div>
+    </body>
+
+</html>

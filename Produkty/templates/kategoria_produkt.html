@@ -5,11 +5,12 @@
         {% if kategoria_produkt %}
 
             {% for produkt in kategoria_produkt %}
-
-                <p><a href = "/produkt/{{ produkt.id }}/"> {{produkt.nazwa}} </a></p>
+                <div id="mainwindow">
+                    <p><a style="text-decoration: none" href = "/produkt/{{ produkt.id }}/"> {{produkt.nazwa}} </a></p>
+                </div>
             {% endfor %}
 
         {% else %}
-
+            <p>Nie ma takiej kategorii.</p>
         {% endif %}
       {% endblock %}

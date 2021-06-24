@@ -13,6 +13,7 @@ class Producent(models.Model):
 
 class Kategoria(models.Model):
     nazwa = models.CharField(max_length=40)
+    zdjecie = models.ImageField(null=True, blank=True, upload_to="imageskat/")
     def __str__(self):
         return self.nazwa
     class Meta:
