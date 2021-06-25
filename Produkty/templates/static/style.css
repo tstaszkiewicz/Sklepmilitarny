@@ -23,6 +23,14 @@ body {
     float: left;
     background-color: cadetblue;
 }
+
+#czas {
+    text-align: center;
+    color: white;
+    margin-bottom: 25px;
+    font-size: 25px;
+}
+
 #navig h1 {
     text-align: center;
 }
@@ -125,7 +133,7 @@ a.menu:hover {
 }
 
 article {
-    margin: 30px 20px 10px 0;
+    margin: 0px 20px 10px 0;
 }
 
 article h1 {
@@ -218,6 +226,7 @@ table {
 
 #ar01 {
     margin: 0px;
+
 }
 
 

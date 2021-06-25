@@ -13,7 +13,6 @@ def index(request):
 def kategoria (request, id):        # /kategoria/1 to wyswietla o id=1
     kategoria_user = Kategoria.objects.get(pk=id)
     kategoria_produkt = Produkty.objects.filter(kategoria = kategoria_user)   #wszystkie produkty z wybranej kategorii
-    # aktualna lista kategorii aby menu caly czas dzialalo
     kategorie = Kategoria.objects.all()
     dane = {'kategoria_user' : kategoria_user,
             'kategoria_produkt' : kategoria_produkt,
@@ -31,12 +30,11 @@ def produkt (request, id):        # /produkt/1 to wyswietla o id=1
 def search(request):
     q=request.GET['q']
     kategorie = Kategoria.objects.all()
-    dane = Produkty.objects.filter(nazwa__icontains=q).order_by('-id')
+    dane = Produkty.objects.filter(nazwa__icontains=q).exclude(nazwa__exact='').order_by('-id')
     print(dane)
     context = {
         'dane': dane,
         'kategorie':kategorie,
-        'dane':dane
     }
     return render(request, 'search.html', context)
 

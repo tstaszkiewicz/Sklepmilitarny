@@ -8,6 +8,7 @@
        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
         <title>Sklep militarny</title>
         <link rel="icon" type="image/png" sizes="16x16"  href="{% static 'images/favicon.ico' %}">
+
     </head>
 
     <body>
@@ -32,12 +33,13 @@
 
             <section>
                 <div id ="navig" >
-                    <h1>Kategorie</h1><br>
+                    <div id="czas"></div>
+                    <h1>Kategorie</h1>
                     {% for kat in kategorie %}
                         {% if kat.zdjecie %}
                              <a class="mainphoto" href="/kategoria/{{kat.id}}"><img src="{{ MEDIA_URL }}{{ kat.zdjecie.url }}" alt="img"></a>
                         {% endif %}
-                        <p><a class="kat" href="/kategoria/{{kat.id}}">{{ kat.nazwa }} </a> </p><br>
+                        <p><a class="kat" href="/kategoria/{{kat.id}}">{{ kat.nazwa }} </a> </p>
                     {% endfor %}
 
                 </div>
@@ -51,5 +53,20 @@
 
     </div>
 
+        <script type="text/javascript">
+            function getTime() {
+                return (new Date()).toLocaleTimeString();
+            }
+
+            //wywołanie ma na celu eliminację opóźnienia sekundowego
+            document.getElementById('czas').innerHTML = getTime();
+
+            setInterval(function() {
+                document.getElementById('czas').innerHTML = getTime();
+            }, 1000);
+        </script>
+
+
     </body>
+
 </html>
