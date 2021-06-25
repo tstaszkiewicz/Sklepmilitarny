@@ -358,7 +358,7 @@ input[type=text] {
 
 
 }
-@media (max-width: 600px) {
+@media (max-width: 500px) {
     nav a {
         width: 100%;
 
