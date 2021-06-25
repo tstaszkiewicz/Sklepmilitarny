@@ -1,5 +1,4 @@
 from django.shortcuts import render     #odpowiada za wyswietlanie html
-from django.http import HttpResponse
 from .models import Produkty, Kategoria
 
 
@@ -28,7 +27,7 @@ def produkt (request, id):        # /produkt/1 to wyswietla o id=1
             'kategorie' : kategorie}
     return render(request, 'produkt.html', dane)
 
-    #search
+    #wyszukiwarka
 def search(request):
     q=request.GET['q']
     kategorie = Kategoria.objects.all()

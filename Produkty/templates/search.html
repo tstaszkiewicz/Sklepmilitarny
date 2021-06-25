@@ -24,7 +24,7 @@
                     <form action="/search">
 
                               <input name="q" type="text" autocomplete="off"  size="11" placeholder="Wyszukaj produkt" />
-                                    <button type="submit" >Zatwierdź</button>
+                                    <button class="button" type=submit" >Zatwierdź</button>
                      </form>
                 </a>
             </nav>
@@ -45,6 +45,7 @@
                 <div id = "searchwindow">
                     {% block produkt %}
                         {% if dane %}
+
                             <h3>Wynik wyszukania dla: "{{ request.GET.q}}"</h3>
                             {% for temp_dane in dane %}
                                 <div id="mainwindow">
@@ -52,7 +53,8 @@
                                 </div>
                             {% endfor %}
                         {% else %}
-                            <p>Nie ma produktu o takiej nazwie.</p>
+                            <p style="font-size: 40px; text-align: center ">Nie ma produktu o takiej nazwie.</p>
+
                         {% endif %}
                     {% endblock %}
 
