@@ -1,0 +1,25 @@
+    {% extends 'szablon.html' %}
+
+    {% block produkt %}
+        <div class="container">
+
+            {% if error %}
+              <div class="alert alert-danger">
+                {{ error }}<br>
+              </div>
+            {% endif %}
+            <br>
+            <form method="POST">
+              {% csrf_token %}
+              Nazwa użytkownika:<br>
+              <input type="text" autocomplete="off" name="username"><br><br>
+              Hasło:<br>
+              <input type="password" name="password1"><br><br>
+              Potwierdź hasło:<br>
+              <input type="password" name="password2"><br><br>
+
+              <input class="button" type="submit" value="Zarejestruj">
+            </form>
+         </div>
+
+    {% endblock produkt %}

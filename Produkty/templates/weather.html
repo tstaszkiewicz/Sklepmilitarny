@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="UTF-8">
+        <!--sposob wyswietlania na urzadzeniach mobilnych-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
+        <title>Pogoda</title>
+        <link rel="icon" type="image/png" sizes="16x16"  href="{% static 'images/favicon.ico' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
+    </head>
+<body>
+    <div id="wrapper">
+    <header>
+                <img class="temp" src="{% static 'images/logosklepu.png' %}" height="200px;" alt="My image">
+    </header>
+            <nav>
+                <a class="menu" href="/">Sklep militarny</a>
+                <a class="menu" href="/galeria">Bestseller</a>
+                <a class="menu" href="/kontakt">Kontakt</a>
+                <a class="menu active" href="/pogoda">Pogoda</a>
+
+                {% if user.is_authenticated %}
+                <a class="menu" href="JavaScript:{document.getElementById('logout').submit()}">Wyloguj</a>
+
+
+                {% else %}
+
+                <a class="menu" href="{% url 'signup_page' %}">Zarejestruj się</a>
+                    <a></a><a></a><a></a><a></a>
+                <a class="menu" href="{% url 'login_page' %}">Zaloguj</a>
+
+                {% endif %}
+
+            </nav>
+
+        <section>
+
+            {% if error %}
+                <div class="alert alert-danger">
+                    {{ error }}<br>
+                </div>
+            {% endif %}
+
+            <section class="section">
+                <div class="columns">
+                    <div class="column is-offset-4 is-4">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="field has-addons">
+                                <div class="control is-expanded">
+                                    {{ form.name }}
+                                </div>
+                                <div class="control">
+                                    <button class="button is-info">
+                                        Dodaj miasto
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </section>
+            <section class="section">
+                    <div class="rows">
+                        <div class="column is-offset-4 is-4">
+                            {% for weather in weather_data %}
+                            <div class="boxx">
+                                <article class="media">
+                                    <div class="media-left">
+                                        <figure class="image is-50x50">
+                                            <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
+                                        </figure>
+                                    </div>
+                                    <div class="media-content">
+                                        <div class="content">
+                                            <p>
+                                                <span class="title">{{ weather.city }}</span>
+                                                <br>
+                                                <span class="subtitle">{{ weather.temperature }} °C</span>
+                                                <h4>Wilgotność: {{weather.humidity}} %</h4>
+                                                <h4>Ciśnienie: {{weather.pressure}} hPa</h4>
+                                                <h4>Prędkość wiatru: {{weather.windspeed}} km/h</h4>
+                                                <!-- <br> {{ weather.description }}-->
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+            </section>
+        </section>
+
+
+    <footer>Copyright © Wszystkie prawa zastrzeżone</footer>
+    </div>
+    {% if user.is_authenticated %}
+    <form id="logout" method="POST" action="{% url 'logout_page' %}">
+        {% csrf_token %}
+        <input type="hidden">
+    </form>
+    {% endif %}
+</body>
+</html>

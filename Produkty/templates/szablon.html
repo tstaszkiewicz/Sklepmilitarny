@@ -5,10 +5,10 @@
         <meta charset="UTF-8">
         <!--sposob wyswietlania na urzadzeniach mobilnych-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
         <title>Sklep militarny</title>
         <link rel="icon" type="image/png" sizes="16x16"  href="{% static 'images/favicon.ico' %}">
 
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
     </head>
 
     <body>
@@ -17,24 +17,34 @@
                 <img class="temp" src="{% static 'images/logosklepu.png' %}" height="200px;" alt="My image">
         </header>
             <nav>
-                <a class="menu active" href="/">Sklep militarny TOM-STA</a>
-                <a class="menu" href="/galeria.html">Best Sellery</a>
-                <a class="menu" href="/kontakt.html">Kontakt</a>
-
+                <a class="menu active" href="/">Sklep militarny</a>
+                <a class="menu" href="/galeria">Bestseller</a>
+                <a class="menu" href="/kontakt">Kontakt</a>
+                <a class="menu" href="/pogoda">Pogoda</a>
                 <a class="menu">
                     <form action="/search">
 
-                              <input name="q" type="text" autocomplete="off" title="Do wyszukania podaj co namniej jedną literę bądź cyfrę" required="required" size="11" placeholder="Wyszukaj produkt" />
-                                    <button class="button" type=submit" >Zatwierdź</button>
+                        <input name="q" type="text" autocomplete="off" title="Do wyszukania podaj co namniej jedną literę bądź cyfrę" required="required" size="11" placeholder="Wyszukaj produkt" />
+                        <button class="button" type=submit" >Zatwierdź</button>
                      </form>
                 </a>
+                {% if user.is_authenticated %}
+                <a></a><a></a><a></a><a></a>
+                <a class="menu" href="JavaScript:{document.getElementById('logout').submit()}">Wyloguj</a>
+
+
+                {% else %}
+                <a></a><a></a><a></a>
+                <a class="menu" href="{% url 'signup_page' %}">Zarejestruj się</a>
+                <a class="menu" href="{% url 'login_page' %}">Zaloguj</a>
+                {% endif %}
 
             </nav>
 
             <section>
                 <div id ="navig" >
                     <div id="czas"></div>
-                    <h1>Kategorie</h1>
+
                     {% for kat in kategorie %}
                         {% if kat.zdjecie %}
                              <a class="mainphoto" href="/kategoria/{{kat.id}}"><img src="{{ MEDIA_URL }}{{ kat.zdjecie.url }}" alt="img"></a>
@@ -45,7 +55,8 @@
                 </div>
 
                 <div id ="searchwindow">
-                    {% block produkt %} {% endblock produkt %}
+                    {% block produkt %}
+                    {% endblock produkt %}
                 </div>
             </section>
 
@@ -64,8 +75,14 @@
             setInterval(function() {
                 document.getElementById('czas').innerHTML = getTime();
             }, 1000);
-        </script>
 
+        </script>
+    {% if user.is_authenticated %}
+    <form id="logout" method="POST" action="{% url 'logout_page' %}">
+        {% csrf_token %}
+        <input type="hidden">
+    </form>
+    {% endif %}
 
     </body>
 

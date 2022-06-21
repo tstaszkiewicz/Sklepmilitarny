@@ -16,10 +16,10 @@
                 <img class="temp" src="{% static 'images/logosklepu.png' %}" height="200px;" alt="My image">
         </header>
             <nav>
-                <a class="menu" href="/">Sklep militarny TOM-STA</a>
-                <a class="menu active" href="/galeria.html">Best Sellery</a>
-                <a class="menu" href="/kontakt.html">Kontakt</a>
-
+                <a class="menu" href="/">Sklep militarny</a>
+                <a class="menu active" href="/galeria">Bestseller</a>
+                <a class="menu" href="/kontakt">Kontakt</a>
+                <a class="menu" href="/pogoda">Pogoda</a>
                 <a class="menu">
                     <form action="/search">
 
@@ -27,6 +27,16 @@
                                     <button class="button" type=submit" >Zatwierdź</button>
                      </form>
                 </a>
+                {% if user.is_authenticated %}
+                <a></a><a></a><a></a><a></a>
+                <a class="menu" href="JavaScript:{document.getElementById('logout').submit()}">Wyloguj</a>
+
+
+                {% else %}
+                <a></a><a></a><a></a>
+                <a class="menu" href="{% url 'signup_page' %}">Zarejestruj się</a>
+                <a class="menu" href="{% url 'login_page' %}">Zaloguj</a>
+                {% endif %}
 
             </nav>
 
@@ -79,6 +89,13 @@
         <footer>Copyright © Wszystkie prawa zastrzeżone</footer>
 
     </div>
+
+    {% if user.is_authenticated %}
+    <form id="logout" method="POST" action="{% url 'logout_page' %}">
+        {% csrf_token %}
+        <input type="hidden">
+    </form>
+    {% endif %}
     </body>
 
 </html>

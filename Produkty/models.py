@@ -31,3 +31,12 @@ class Produkty(models.Model):
     class Meta:
             verbose_name = "Produkt"
             verbose_name_plural = "Produkty"
+
+
+class City(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+    class Meta:
+            verbose_name_plural = "Miasta"

@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+html {
+    background-color: #01290d;
+}
+
 body {
     background-color: #01290d;
 }
@@ -28,7 +32,7 @@ body {
     text-align: center;
     color: white;
     margin-bottom: 25px;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 #navig h1 {
@@ -79,6 +83,10 @@ body {
     text-align: justify;
 }
 
+.boxx {
+    background-color: #87afe0;
+    border-radius: 30px;
+}
 
 section::after {
     content: "";
@@ -97,12 +105,13 @@ header img {
 
 nav {
     overflow: hidden;
+    background-color: rgb(5, 78, 0);
 }
 
 
 nav a {
     display: block;
-    width: 25%;
+    width: 20%;
     float: left;
     color: white;
     height: 50px;
@@ -279,12 +288,27 @@ table {
 }
 
 input[type=text] {
-    background-color: cadetblue;
-    color: white;
-    border: 3px solid #555;
+    background-color: #77c8ca;
+    color: black;
+    font-weight: bolder;
+    border: 1px solid #555;
     font-size: 15px;
-    height: 40px;
+    height: 30px;
+    border-radius: 14px;
+
 }
+
+input[type=password] {
+    background-color: #77c8ca;
+    border: 1px solid #555;
+    font-size: 15px;
+    height: 30px;
+    border-radius: 14px;
+}
+
+
+.alert-warning{color:#856404;background-color:#fff3cd;border-color:#ffeeba;width: 460px; font-size: 20px;border-radius: 5px; padding: 10px; margin: 3px}
+.alert-danger{color:#721c24;background-color:#f8d7da;border-color:#f5c6cb;width: 460px; font-size: 20px;border-radius: 5px; padding: 10px; margin: 3px}
 
 
 @media (max-width: 900px) {
