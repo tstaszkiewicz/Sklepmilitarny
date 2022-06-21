@@ -6,7 +6,7 @@ from rest_framework import viewsets
 from .serializer import ProduktySerializer
 from django.shortcuts import redirect           #przekierowania na inne strony
 from django.contrib.auth.models import User     #czynnosci zwiazane z uzytkownikiem
-from django.contrib.auth import authenticate    # weryfikacja uzytkownika
+from django.contrib.auth import authenticate
 from django.contrib import auth                 #autoryzacja
 from django.contrib.auth.decorators import login_required
 
